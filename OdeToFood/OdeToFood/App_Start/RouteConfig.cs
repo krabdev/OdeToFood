@@ -13,6 +13,17 @@ namespace OdeToFood
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //If a user want to come and search cuisines by country
+            //Cuisine/french, /country will be passed to action as parameter
+
+            routes.MapRoute(
+                "Cuisine",
+                "Cuisine/{name}",
+                new { controller = "Cuisine", action = "Search", name = UrlParameter.Optional });
+
+
+            //Greedy, match almost anythink
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

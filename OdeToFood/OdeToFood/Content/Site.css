@@ -754,3 +754,18 @@ tr.pager td {
             margin: 0;
         }
 }
+
+.Review {
+    padding:2px;
+    border-bottom: 2px solid black;
+}
+
+    .Review h4 {
+        color:maroon;
+        padding:5px;
+        background: #cccc99;
+    }
+
+    .Review p {
+        font-size: .8em;
+    }

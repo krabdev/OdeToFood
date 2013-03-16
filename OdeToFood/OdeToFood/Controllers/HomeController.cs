@@ -1,4 +1,5 @@
-﻿using System;
+﻿ using OdeToFood.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,13 @@ namespace OdeToFood.Controllers
 {
     public class HomeController : Controller
     {
+        OdeToFoodDb _db = new OdeToFoodDb();
+
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            var model = _db.Restaurants.ToList();
 
-            return View();
+            return View(model);
         }
 
         public ActionResult About()
@@ -27,6 +30,15 @@ namespace OdeToFood.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

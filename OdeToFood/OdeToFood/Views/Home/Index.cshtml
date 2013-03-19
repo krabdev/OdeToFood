@@ -1,8 +1,13 @@
-﻿@model IEnumerable<OdeToFood.Models.Restaurant>
+﻿@model IEnumerable<OdeToFood.Models.RestaurantListViewModel>
 
 @{
     ViewBag.Title = "Home Page";
 }
+
+<form method="get">
+    <input type="search" name="searchTerm"/>
+    <input type="submit" value="Search by Name" />
+</form>
 
 @foreach (var item in Model)
 {
@@ -11,6 +16,7 @@
         <div>
             @item.City, @item.Country
         </div>
+        <div>Reviews: @item.CountOfReviews</div>
     </div>
     <hr />
 }

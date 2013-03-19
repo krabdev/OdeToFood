@@ -19,6 +19,9 @@ namespace OdeToFood.Migrations
             context.Restaurants.AddOrUpdate(r => r.Name,
                 new Restaurant { Name = "Sabatino's", City = "Baltimore", Country = "USA" },
                 new Restaurant { Name = "Great Lake", City = "Chicago", Country = "USA" },
+                new Restaurant { Name = "Andrea's Fast Food", City = "Nicosia", Country = "Cyprus"},
+                new Restaurant { Name = "Lime", City = "Palaichori", Country = "Cyprus" },
+
                 new Restaurant
                 {
                     Name = "Smaka",

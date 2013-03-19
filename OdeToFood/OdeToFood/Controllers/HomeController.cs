@@ -1,4 +1,4 @@
-﻿ using OdeToFood.Models;
+﻿using OdeToFood.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +11,38 @@ namespace OdeToFood.Controllers
     {
         OdeToFoodDb _db = new OdeToFoodDb();
 
-        public ActionResult Index()
+        //serachTerm param cause a user might come to home page with a serrach result
+        public ActionResult Index(string searchTerm = null)
         {
-            var model = _db.Restaurants.ToList();
+
+            var model = 
+                _db.Restaurants
+                    .OrderByDescending( r => r.Reviews.Average ( review => review.Rating))
+                    //.Take() and Skip() is used for pagination!
+                    .Take(10)
+                    //Check if the serachTerm is null, if not make a serach
+                    .Where ( r => searchTerm == null || r.Name.StartsWith(searchTerm))
+                    .Select( r => 
+                        new RestaurantListViewModel
+                             { 
+                                 Id =r.Id,
+                                 Name = r.Name,
+                                 City =  r.City,
+                                 Country = r.Country,
+                                 CountOfReviews = r.Reviews.Count()
+                             });
 
             return View(model);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
+            var query = from r in _db.Restaurants
+                        where r.Country == "USA"
+                        orderby r.Name
+                        select r;
+            var model = query.ToList();
+            return View(model.First());
         }
 
         public ActionResult Contact()

@@ -13,7 +13,10 @@ namespace OdeToFood.Models
         {
 
         }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<RestaurantReview> RestaurantReviews { get; set; }
+        
     }
 }

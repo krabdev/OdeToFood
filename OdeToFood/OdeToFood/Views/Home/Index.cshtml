@@ -9,14 +9,20 @@
     <input type="submit" value="Search by Name" />
 </form>
 
-@foreach (var item in Model)
-{
-    <div>
-        <h4>@item.Name</h4>
-        <div>
-            @item.City, @item.Country
-        </div>
-        <div>Reviews: @item.CountOfReviews</div>
-    </div>
-    <hr />
-}
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <h4>@item.Name</h4>
+            </td>
+            <td>
+                @item.City, @item.Country
+            </td>
+            <td>
+                Reviews: @item.CountOfReviews
+            </td>
+        </tr>                                                   
+    }
+</table>

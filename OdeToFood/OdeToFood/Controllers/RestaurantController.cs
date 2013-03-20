@@ -18,7 +18,11 @@ namespace OdeToFood.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Restaurants.ToList());
+            var model =
+                from r in db.Restaurants
+                orderby r.Reviews.Count() descending
+                select r;
+            return View(model);
         }
 
        

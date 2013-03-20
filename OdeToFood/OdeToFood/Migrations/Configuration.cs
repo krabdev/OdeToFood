@@ -33,6 +33,12 @@ namespace OdeToFood.Migrations
                              
                         }
                 });
+
+            for (int i = 1; i < 1000; i++)
+            {
+                context.Restaurants.AddOrUpdate(r => r.Name,
+                    new Restaurant { Name = i.ToString(), City="Nowhere", Country="Someplace" });
+            }
         }
     }
 }

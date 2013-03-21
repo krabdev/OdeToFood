@@ -29,8 +29,6 @@ namespace OdeToFood.Controllers
         //serachTerm param cause a user might come to home page with a serrach result
         public ActionResult Index(string searchTerm = null, int page = 1)
         {
-
-
             var model = 
                 _db.Restaurants
                     .OrderByDescending( r => r.Reviews.Average ( review => review.Rating))
@@ -55,6 +53,7 @@ namespace OdeToFood.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult About()
         {
             var query = from r in _db.Restaurants
